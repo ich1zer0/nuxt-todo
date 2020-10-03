@@ -1,0 +1,99 @@
+{
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "editor.suggestSelection": "first",
+  "editor.renderWhitespace": "all",
+  "editor.renderControlCharacters": true,
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true,
+    "source.fixAll.eslint": true,
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.encoding": "utf8",
+  "files.autoGuessEncoding": false,
+  "files.associations": {
+    "*.vue": "vue",
+  },
+  "terminal.integrated.macOptionIsMeta": true,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.explorerKind": "external",
+  "git.path": "/usr/local/bin/git",
+  "git.checkoutType": "local",
+  "git.autorefresh": true,
+  "npm.packageManager": "yarn",
+  "emmet.includeLanguages": {
+    "vue": "html",
+    "ejs": "html",
+    "nunjucks": "html"
+  },
+  "htmlhint.documentSelector": [
+    "html",
+    "htm",
+    "ejs",
+    "nunjucks"
+  ],
+  "[html]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "postcss.validate": false,
+  "[css]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "stylelint.enable": true,
+  "stylelint.packageManager": "yarn",
+  "javascript.validate.enable": false,
+  "eslint.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn",
+  "eslint.options": { "configFile": ".eslintrc.js" },
+  "eslint.validate": [
+    "vue",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  ],
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  },
+  "prettier.requireConfig": true,
+  "prettier.packageManager": "yarn",
+  "vetur.validation.template": false,
+  "vetur.format.defaultFormatter.html": "prettyhtml",
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "cSpell.words": [
+    "by",
+    "columns",
+    "desc",
+    "enabled",
+    "field",
+    "good",
+    "id",
+    "initial",
+    "mode",
+    "options",
+    "pages",
+    "pagination",
+    "rows",
+    "sort",
+    "table",
+    "true",
+    "type",
+    "vue",
+    "vue good table columns rows sort options enabled true initial by field id type desc pagination mode pages",
+    "todos"
+  ]
+}
