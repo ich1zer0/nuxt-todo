@@ -146,8 +146,8 @@
       <div class="text-center mt-6">
         <button
           class="text-xl text-white w-full max-w-xs rounded-md bg-gray-300 p-4"
-          :class="{ 'bg-blue-600': !isDisabled }"
-          :disabled="isDisabled"
+          :class="{ 'bg-blue-600': isClickable }"
+          :disabled="!isClickable"
           @click="handleSubmit"
         >
           追加
@@ -209,8 +209,8 @@ export default {
      *
      * @return {Boolean}
      */
-    isDisabled() {
-      return this.title === '' || this.text === ''
+    isClickable() {
+      return this.title !== '' && this.text !== ''
     },
   },
   create() {
