@@ -40,7 +40,7 @@ export default {
   },
   created() {
     // ToDoリストが存在しなければトップページへ遷移する
-    if (this.allTodos.length <= 0) {
+    if (!this.allTodos.length) {
       return this.$router.push('/')
     }
     this.setCurrentId(this.$route.params.id)
