@@ -7,13 +7,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import TodoListSide from '~/components/TodoListSide'
 
 export default {
   name: 'TheSide',
-  components: {
-    TodoListSide,
-  },
   computed: {
     ...mapGetters({
       isLoading: 'loading/isLoading',

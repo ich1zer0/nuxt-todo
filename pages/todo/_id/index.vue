@@ -9,14 +9,10 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import TodoDetail from '~/components/TodoDetail'
 
 export default {
   name: 'Todo',
   layout: 'todo',
-  components: {
-    TodoDetail,
-  },
   computed: {
     ...mapGetters({
       isLoading: 'loading/isLoading',

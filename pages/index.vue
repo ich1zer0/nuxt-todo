@@ -20,17 +20,9 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import TodoFilter from '~/components/TodoFilter'
-import TodoList from '~/components/TodoList'
-import TodoInput from '~/components/TodoInput'
 
 export default {
   name: 'Index',
-  components: {
-    TodoList,
-    TodoFilter,
-    TodoInput,
-  },
   computed: {
     ...mapGetters({
       isLoading: 'loading/isLoading',

@@ -8,6 +8,7 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+  components: true,
   css: ['~/assets/scss/main.scss'],
   buildModules: ['@nuxtjs/tailwindcss'],
 }

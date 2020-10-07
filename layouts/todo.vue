@@ -12,12 +12,7 @@
 </template>
 
 <script>
-import TheSide from '~/components/TheSide.vue'
-
 export default {
   name: 'TodoLayout',
-  components: {
-    TheSide,
-  },
 }
 </script>
