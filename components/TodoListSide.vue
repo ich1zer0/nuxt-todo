@@ -14,15 +14,14 @@
     <p v-else class="mt-2">他のタスクはありません。</p>
   </div>
 </template>
-<script>
-import { mapGetters } from 'vuex'
 
+<script>
 export default {
   name: 'TodoListSide',
+  props: {
+    todos: { type: Array, required: true },
+  },
   computed: {
-    ...mapGetters({
-      todos: 'todos/otherTodos',
-    }),
     /**
      * 現在のページ以外のToDoが存在するかを返す
      *

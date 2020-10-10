@@ -34,20 +34,15 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
-
 export default {
   name: 'TodoInput',
   data() {
     return {
-      title: '',
-      text: '',
+      title: '', // タスクのタイトル
+      text: '', // タスクの詳細
     }
   },
   computed: {
-    ...mapGetters({
-      allTodos: 'todos/allTodos',
-    }),
     /**
      * 追加ボタンの活性状態を返す
      *
@@ -58,20 +53,11 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({
-      addTodo: 'todos/addTodo',
-    }),
     /**
-     * ToDoを追加して入力をクリアする
+     * ToDoを追加をemitして入力をクリアする
      */
     handleSubmit() {
-      const newTodo = {
-        id: this.allTodos.length,
-        title: this.title,
-        text: this.text,
-        isDone: false,
-      }
-      this.addTodo(newTodo)
+      this.$emit('submit', { title: this.title, text: this.text })
       this.title = ''
       this.text = ''
     },

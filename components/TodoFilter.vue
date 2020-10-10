@@ -2,45 +2,42 @@
   <div class="flex items-center">
     <p class="text-sm">絞り込み:</p>
     <div>
-      <label class="ml-2">
-        <input v-model="filter" class="mr-1" type="radio" value="all" />すべて
-      </label>
-      <label class="ml-2">
-        <input
-          v-model="filter"
-          class="mr-1"
-          type="radio"
-          value="working"
-        />作業中
-      </label>
-      <label class="ml-2">
-        <input v-model="filter" class="mr-1" type="radio" value="done" />完了
-      </label>
+      <template v-for="option in options">
+        <label :key="option.value" class="ml-2">
+          <input
+            class="mr-1"
+            type="radio"
+            :checked="checked === option.value"
+            :value="option.value"
+            @change="emitChangeEvent(option.value)"
+          />
+          {{ option.label }}
+        </label>
+      </template>
     </div>
   </div>
 </template>
-<script>
-import { mapGetters, mapMutations } from 'vuex'
 
+<script>
 export default {
   name: 'TodoFilter',
-  computed: {
-    ...mapGetters({
-      currentFilter: 'todos/currentFilter',
-    }),
-    filter: {
-      get() {
-        return this.currentFilter
-      },
-      set(value) {
-        this.setCurrentFilter(value)
-      },
-    },
+  model: {
+    prop: 'checked',
+    event: 'change',
+  },
+  props: {
+    checked: { type: String, required: true },
+    options: { type: Array, required: true },
   },
   methods: {
-    ...mapMutations({
-      setCurrentFilter: 'todos/setCurrentFilter',
-    }),
+    /**
+     * 絞り込みの状態変更をemitする
+     *
+     * @param {String} value
+     */
+    emitChangeEvent(value) {
+      this.$emit('change', value)
+    },
   },
 }
 </script>

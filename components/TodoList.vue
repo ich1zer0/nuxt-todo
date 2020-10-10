@@ -54,7 +54,7 @@
                 <div class="px-1">
                   <button
                     class="text-sm w-24"
-                    @click="toggleTodoState(todo.id)"
+                    @click="emitToggleEvent(todo.id)"
                   >
                     <span
                       v-if="todo.isDone"
@@ -73,7 +73,7 @@
                 <div class="px-1">
                   <button
                     class="text-sm text-white w-24 bg-red-600 rounded-md px-4 py-1"
-                    @click="removeTodo(todo.id)"
+                    @click="emitRemoveEvent(todo.id)"
                   >
                     削除
                   </button>
@@ -88,14 +88,12 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from 'vuex'
-
 export default {
   name: 'TodoList',
+  props: {
+    todos: { type: Array, required: true },
+  },
   computed: {
-    ...mapGetters({
-      todos: 'todos/filteredTodos',
-    }),
     /**
      * フィルタリングされた状態のToDoが存在するかを返す
      *
@@ -106,10 +104,22 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({
-      removeTodo: 'todos/removeTodo',
-      toggleTodoState: 'todos/toggleTodoState',
-    }),
+    /**
+     * ToDoの削除をemitする
+     *
+     * @param {Number} id
+     */
+    emitRemoveEvent(id) {
+      this.$emit('remove', id)
+    },
+    /**
+     * ToDoの状態変更をemitする
+     *
+     * @param {Number} id
+     */
+    emitToggleEvent(id) {
+      this.$emit('toggle', id)
+    },
   },
 }
 </script>
