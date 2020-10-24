@@ -40,5 +40,8 @@ describe('TodoInput', () => {
     // payloadされたデータ
     expect(wrapper.emitted('submit')[0][0].title).toMatch('タスクのタイトル')
     expect(wrapper.emitted('submit')[0][0].text).toMatch('タスクの詳細')
+    // data の値がリセットされているかチェック
+    expect(wrapper.vm.title).toMatch('')
+    expect(wrapper.vm.text).toMatch('')
   })
 })
