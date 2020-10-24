@@ -19,6 +19,17 @@ describe('TodoInput', () => {
     expect(wrapper.vm.title).toMatch('')
     expect(wrapper.vm.text).toMatch('')
   })
+  it('isClickableが期待通りに動作する', () => {
+    // data に値が入っている場合はtrue
+    wrapper.vm.title = 'タスクのタイトル'
+    wrapper.vm.text = 'タスクの詳細'
+    expect(wrapper.vm.isClickable).toBeTruthy()
+
+    // data に値が空の場合はfalse
+    wrapper.vm.title = ''
+    wrapper.vm.text = ''
+    expect(wrapper.vm.isClickable).toBeFalsy()
+  })
   it('emitデモ', async () => {
     // data に値を入力
     wrapper.vm.title = 'タスクのタイトル'
