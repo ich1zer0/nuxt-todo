@@ -12,14 +12,14 @@ afterEach(() => {
 })
 
 describe('TodoInput', () => {
-  test('Vueのインスタンスである', () => {
+  it('Vueのインスタンスである', () => {
     expect(wrapper.isVueInstance).toBeTruthy()
   })
-  test('最初はデータが空っぽである', () => {
+  it('最初はデータが空っぽである', () => {
     expect(wrapper.vm.title).toMatch('')
     expect(wrapper.vm.text).toMatch('')
   })
-  test('emitデモ', async () => {
+  it('emitデモ', async () => {
     // data に値を入力
     wrapper.vm.title = 'タスクのタイトル'
     wrapper.vm.text = 'タスクの詳細'
