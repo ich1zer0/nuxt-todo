@@ -39,5 +39,6 @@ describe('TodoInput', () => {
     expect(wrapper.emitted('submit').length).toBe(1)
     // payloadされたデータ
     expect(wrapper.emitted('submit')[0][0].title).toMatch('タスクのタイトル')
+    expect(wrapper.emitted('submit')[0][0].text).toMatch('タスクの詳細')
   })
 })
