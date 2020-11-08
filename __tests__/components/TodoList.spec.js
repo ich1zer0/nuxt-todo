@@ -19,7 +19,7 @@ describe('TodoList', () => {
     })
     expect(wrapper.isVueInstance).toBeTruthy()
   })
-  it('todosデータが正しく表示されているかテスト', () => {
+  it('propsの値がちゃんと受け取れているかどうか', () => {
     wrapper = shallowMount(Component, {
       stubs: {
         NuxtLink: RouterLinkStub,
@@ -35,7 +35,10 @@ describe('TodoList', () => {
         ],
       },
     })
-    expect(wrapper.find('a').text()).toMatch('タスクのタイトル')
+    expect(wrapper.props().todos[0].id).toBe(0)
+    expect(wrapper.props().todos[0].title).toBe('タスクのタイトル')
+    expect(wrapper.props().todos[0].text).toBe('タスクの詳細')
+    expect(wrapper.props().todos[0].isDone).toBeFalsy()
   })
   it('todosが空だったらisFilteredTodosはfalseを返す', () => {
     wrapper = shallowMount(Component, {
@@ -93,8 +96,8 @@ describe('TodoList', () => {
     expect(wrapper.emitted('remove')).toBeTruthy()
     // 一個のイベントがemitされた
     expect(wrapper.emitted('remove').length).toBe(1)
-    // タスクが削除され表示が変更された
-    expect(wrapper.find('a').text()).toMatch('')
+    // payloadされたデータ
+    expect(wrapper.emitted('remove')[0][0]).toBe(0)
   })
   it('emitToggleEventのデモ', async () => {
     wrapper = shallowMount(Component, {
@@ -123,12 +126,7 @@ describe('TodoList', () => {
     expect(wrapper.emitted('toggle')).toBeTruthy()
     // 一個のイベントがemitされた
     expect(wrapper.emitted('toggle').length).toBe(1)
-    // ステータスが変更された
-    expect(wrapper.find('a').text()).toMatch('')
-
-    // もう一度 emit
-    wrapper.vm.$emit('toggle', 0)
-    // ステータスが再変更された
-    expect(wrapper.find('a').text()).toMatch('タスクのタイトル')
+    // payloadされたデータ
+    expect(wrapper.emitted('toggle')[0][0]).toBe(0)
   })
 })
