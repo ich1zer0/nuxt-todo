@@ -3,12 +3,11 @@ import Vuex from 'vuex'
 import { cloneDeep } from 'lodash'
 import { getters, actions, mutations } from '~/store/todos'
 
-const state = {
-  list: [],
-}
-
-// beforeEachで毎回Storeを生成するために。
-const initStore = () => {
+/**
+ * Storeを生成する関数
+ * @param {Object} state ステートのオブジェクト
+ */
+const initStore = (state) => {
   return cloneDeep({
     state,
     getters,
@@ -17,18 +16,20 @@ const initStore = () => {
   })
 }
 
+beforeEach(() => {
+  const localVue = createLocalVue()
+  localVue.use(Vuex)
+})
+
 describe('store', () => {
-  let store
-  let localVue
-
-  // 実行可能なStoreを生成してテストします。
-  beforeEach(() => {
-    localVue = createLocalVue()
-    localVue.use(Vuex)
-    store = new Vuex.Store(initStore())
-  })
-
   it('addTodoのテスト', () => {
+    // stateを設定
+    const state = {
+      list: [],
+    }
+    // 実行可能なStoreを生成してテストします。
+    const store = new Vuex.Store(initStore(state))
+
     const newTodo = {
       id: 0,
       title: 'タスクのタイトル',
@@ -50,6 +51,13 @@ describe('store', () => {
     ])
   })
   it('removeTodoのテスト', () => {
+    // stateを設定
+    const state = {
+      list: [],
+    }
+    // 実行可能なStoreを生成してテストします。
+    const store = new Vuex.Store(initStore(state))
+
     const newTodo = {
       id: 0,
       title: 'タスクのタイトル',
@@ -72,6 +80,13 @@ describe('store', () => {
     expect(store.state.list).toEqual([])
   })
   it('toggleTodoStateのテスト', () => {
+    // stateを設定
+    const state = {
+      list: [],
+    }
+    // 実行可能なStoreを生成してテストします。
+    const store = new Vuex.Store(initStore(state))
+
     const newTodo = {
       id: 0,
       title: 'タスクのタイトル',
@@ -102,25 +117,32 @@ describe('store', () => {
   })
 
   it('allTodosのテスト', () => {
-    // dispatch
-    store.dispatch('addTodo', {
-      id: 0,
-      title: 'タスクのタイトル1',
-      text: 'タスクの詳細1',
-      isDone: false,
-    })
-    store.dispatch('addTodo', {
-      id: 1,
-      title: 'タスクのタイトル2',
-      text: 'タスクの詳細2',
-      isDone: false,
-    })
-    store.dispatch('addTodo', {
-      id: 2,
-      title: 'タスクのタイトル3',
-      text: 'タスクの詳細3',
-      isDone: false,
-    })
+    // stateを設定
+    const state = {
+      list: [
+        {
+          id: 0,
+          title: 'タスクのタイトル1',
+          text: 'タスクの詳細1',
+          isDone: false,
+        },
+        {
+          id: 1,
+          title: 'タスクのタイトル2',
+          text: 'タスクの詳細2',
+          isDone: false,
+        },
+        {
+          id: 2,
+          title: 'タスクのタイトル3',
+          text: 'タスクの詳細3',
+          isDone: false,
+        },
+      ],
+    }
+    // 実行可能なStoreを生成してテストします。
+    const store = new Vuex.Store(initStore(state))
+
     // 結果を検証する
     expect(store.getters.allTodos).toEqual([
       {

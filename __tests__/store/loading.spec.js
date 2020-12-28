@@ -3,12 +3,11 @@ import Vuex from 'vuex'
 import { cloneDeep } from 'lodash'
 import { getters, actions, mutations } from '~/store/loading'
 
-const state = {
-  isLoading: true,
-}
-
-// beforeEachで毎回Storeを生成するために。
-const initStore = () => {
+/**
+ * Storeを生成する関数
+ * @param {Object} state ステートのオブジェクト
+ */
+const initStore = (state) => {
   return cloneDeep({
     state,
     getters,
@@ -17,18 +16,20 @@ const initStore = () => {
   })
 }
 
+beforeEach(() => {
+  const localVue = createLocalVue()
+  localVue.use(Vuex)
+})
+
 describe('store', () => {
-  let store
-  let localVue
-
-  // 実行可能なStoreを生成してテストします。
-  beforeEach(() => {
-    localVue = createLocalVue()
-    localVue.use(Vuex)
-    store = new Vuex.Store(initStore())
-  })
-
   it('changeLoadingのテスト', () => {
+    // stateを設定
+    const state = {
+      isLoading: true,
+    }
+    // 実行可能なStoreを生成してテストします。
+    const store = new Vuex.Store(initStore(state))
+
     // 最初はStateはtrue
     expect(store.state.isLoading).toBeTruthy()
     // dispatch
@@ -41,14 +42,27 @@ describe('store', () => {
     expect(store.state.isLoading).toBeTruthy()
   })
 
-  it('isLoadingのテスト', () => {
-    // dispatch
-    store.dispatch('changeLoading', false)
-    // 結果を検証する
-    expect(store.getters.isLoading).toBeFalsy()
-    // dispatch
-    store.dispatch('changeLoading', true)
+  it('isLoadingのテスト（isLoadingがtrueのときtrueを返す）', () => {
+    // stateを設定
+    const state = {
+      isLoading: true,
+    }
+    // 実行可能なStoreを生成してテストします。
+    const store = new Vuex.Store(initStore(state))
+
     // 結果を検証する
     expect(store.getters.isLoading).toBeTruthy()
+  })
+
+  it('isLoadingのテスト（isLoadingがfalseのときfalseを返す）', () => {
+    // stateを設定
+    const state = {
+      isLoading: false,
+    }
+    // 実行可能なStoreを生成してテストします。
+    const store = new Vuex.Store(initStore(state))
+
+    // 結果を検証する
+    expect(store.getters.isLoading).toBeFalsy()
   })
 })
