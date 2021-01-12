@@ -14,6 +14,36 @@ export const getters = {
   },
 }
 
+export const actions = {
+  /**
+   * ToDoを追加するアクション
+   *
+   * @param {Function} commit
+   * @param {Object} todo
+   */
+  addTodo({ commit }, todo) {
+    commit('addTodo', todo)
+  },
+  /**
+   * ToDoをひとつ削除するアクション
+   *
+   * @param {Function} commit
+   * @param {Number} id
+   */
+  removeTodo({ commit }, id) {
+    commit('removeTodo', id)
+  },
+  /**
+   * ToDoの状態を変更するアクション
+   *
+   * @param {Function} commit
+   * @param {Number} id
+   */
+  toggleTodoState({ commit }, id) {
+    commit('toggleTodoState', id)
+  },
+}
+
 export const mutations = {
   /**
    * ToDoを追加する

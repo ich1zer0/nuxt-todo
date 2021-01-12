@@ -14,6 +14,18 @@ export const getters = {
   },
 }
 
+export const actions = {
+  /**
+   * ローディングの状態を変更するアクション
+   *
+   * @param {Function} commit
+   * @param {Boolean} bool
+   */
+  changeLoading({ commit }, bool) {
+    commit('changeLoading', bool)
+  },
+}
+
 export const mutations = {
   /**
    * ローディングの状態を変更する

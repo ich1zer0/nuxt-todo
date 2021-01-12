@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Todo',
@@ -69,7 +69,7 @@ export default {
     this.changeLoading(true)
   },
   methods: {
-    ...mapMutations({
+    ...mapActions({
       changeLoading: 'loading/changeLoading',
     }),
   },
