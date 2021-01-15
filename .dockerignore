@@ -7,10 +7,14 @@ passwords.txt
 .git
 .cache
 *.md
+!README.md
 **/*.class
 
+.DS_Store
 .editorconfig
 .eslintrc.js
 .gitignore
 .prettierrc
 stylelint.config.js
+Dockerfile
+.dockerignore
