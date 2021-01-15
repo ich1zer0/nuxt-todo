@@ -4,9 +4,12 @@ RUN apk update
 
 WORKDIR /app
 
-COPY . .
+COPY ./package.json .
+COPY ./yarn.lock .
 
 RUN yarn install
+
+COPY . .
 
 EXPOSE 3000
 
