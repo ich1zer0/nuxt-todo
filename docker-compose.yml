@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  web:
+    image: vue-docker-image
+    container_name: vue-docker
+    build: .
+    ports:
+      - 4000:3000
