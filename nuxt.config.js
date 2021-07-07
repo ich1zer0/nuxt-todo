@@ -11,4 +11,8 @@ export default {
   components: true,
   css: ['~/assets/scss/main.scss'],
   buildModules: ['@nuxtjs/tailwindcss'],
+  server: {
+    port: 3000,
+    host: '0.0.0.0',
+  },
 }
